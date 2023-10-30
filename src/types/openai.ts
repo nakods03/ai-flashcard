@@ -1,3 +1,3 @@
-import { FlashCard } from './flashcard';
+import { Card } from './flashcard';
 
-export type OpenAIResponse = Omit<FlashCard, 'id'>[];
+export type OpenAIResponse = Omit<Card, 'id'>[];
