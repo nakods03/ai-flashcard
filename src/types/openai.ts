@@ -1,4 +1,3 @@
-export type OpenAIResponse = {
-	question: string;
-	answer: string;
-};
+import { FlashCard } from './flashcard';
+
+export type OpenAIResponse = Omit<FlashCard, 'id'>[];

@@ -12,7 +12,7 @@ const getContent = (topic: string, count: number = 10) =>
 
 export const chatCompletion = async (
 	topic: string
-): Promise<OpenAIResponse[]> => {
+): Promise<OpenAIResponse> => {
 	try {
 		const res = await openai.chat.completions.create({
 			messages: [{ role: 'user', content: getContent(topic) }],
