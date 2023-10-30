@@ -1,5 +1,5 @@
 const FlashcardPage = () => {
-	return <div>FlashcardPage</div>;
+    return <div>FlashcardPage</div>;
 };
 
 export default FlashcardPage;
