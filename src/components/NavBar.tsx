@@ -1,11 +1,30 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import tw from 'tailwind-styled-components';
+
+const Nav = tw.nav`
+    w-full flex gap-4 justify-center py-4 mb-8 text-xl font-bold
+`;
+
+interface NavLinkProps {
+    $active?: boolean;
+}
+const NavLink = tw.div<NavLinkProps>`
+    ${(p) => (p.$active ? 'text-orange-500' : 'text-gray-500')} hover:text-orange-600
+`;
 
 const NavBar = () => {
+    const location = useLocation();
+    const { pathname } = location;
+
     return (
-        <div>
-            <Link to="/">Home</Link>
-            <Link to="/flashcards">My Flashcards</Link>
-        </div>
+        <Nav>
+            <Link to="/">
+                <NavLink $active={pathname === '/'}>Home</NavLink>
+            </Link>
+            <Link to="/flashcards">
+                <NavLink $active={pathname === '/flashcards'}>My Flashcards</NavLink>
+            </Link>
+        </Nav>
     );
 };
 

@@ -1,14 +1,17 @@
 import OverviewCardList from '../components/OverviewCardList';
 import { retrieveFlashcards } from '../store/flashcards';
+import { Container, ContainerTop, Title } from '../style/style';
 
 const FlashcardsPage = () => {
     const flashcards = retrieveFlashcards();
 
     return (
-        <div>
-            <h2>Flashcards</h2>
-            <OverviewCardList flashcards={flashcards} />
-        </div>
+        <ContainerTop>
+            <Container>
+                <Title>Flashcards</Title>
+                <OverviewCardList flashcards={flashcards} />
+            </Container>
+        </ContainerTop>
     );
 };
 

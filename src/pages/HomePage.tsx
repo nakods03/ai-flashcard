@@ -3,8 +3,9 @@ import Form from '../components/Form';
 import OverviewCardList from '../components/OverviewCardList';
 import { retrieveFlashcards, storeFlashcards } from '../store/flashcards';
 import { useEffect, useState } from 'react';
-import { FlashCard } from '../types/flashcard';
 import { chatCompletion } from '../openai/openai';
+import { FlashCard } from '../types/flashcard';
+import { Container, ContainerTop, LinkDiv, RowWrapper, Title } from '../style/style';
 
 const HomePage = () => {
     const [flashcards, setFlashcards] = useState<FlashCard[]>(retrieveFlashcards());
@@ -28,17 +29,19 @@ const HomePage = () => {
     }, [flashcards]);
 
     return (
-        <div>
+        <ContainerTop>
             <Form isLoading={isLoading} onGenerate={handleOnGenerate} />
 
-            <div>
-                <div>
-                    <h2>Top Flashcards</h2>
-                    <Link to="/flashcards">View All →</Link>
-                </div>
+            <Container>
+                <RowWrapper>
+                    <Title>Top Flashcards</Title>
+                    <Link to="/flashcards">
+                        <LinkDiv>View All →</LinkDiv>
+                    </Link>
+                </RowWrapper>
                 <OverviewCardList flashcards={flashcards} />
-            </div>
-        </div>
+            </Container>
+        </ContainerTop>
     );
 };
 

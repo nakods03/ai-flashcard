@@ -1,4 +1,10 @@
 import React, { useState } from 'react';
+import tw from 'tailwind-styled-components';
+import { Button, Container } from '../style/style';
+
+const Input = tw.input`
+    w-full max-w-sm self-center px-4 py-2 outline-none rounded-full border-2 border-solid border-gray-200 focus:border-orange-500 text-lg
+`;
 
 interface FormProps {
     isLoading: boolean;
@@ -17,12 +23,12 @@ const Form = ({ isLoading, onGenerate }: FormProps) => {
     };
 
     return (
-        <div>
-            <input onChange={handleOnChange} value={topic} placeholder="Enter a topic to begin generating flashcards" />
-            <button disabled={isLoading} onClick={handleOnClick}>
+        <Container>
+            <Input onChange={handleOnChange} value={topic} placeholder="Enter a topic to begin generating flashcards" />
+            <Button disabled={isLoading} onClick={handleOnClick}>
                 {isLoading ? 'Generating...' : 'Generate Flashcards'}
-            </button>
-        </div>
+            </Button>
+        </Container>
     );
 };
 

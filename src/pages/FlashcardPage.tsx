@@ -1,7 +1,13 @@
 import { useState } from 'react';
-import Card from '../components/Card';
 import { useParams } from 'react-router-dom';
+import tw from 'tailwind-styled-components';
+import Card from '../components/Card';
 import { retrieveFlashcards } from '../store/flashcards';
+import { Button, ContainerTop, RowWrapper, Title } from '../style/style';
+
+const FlipButton = tw(Button)`
+    rounded-md
+`;
 
 const FlashcardPage = () => {
     const { id } = useParams();
@@ -16,18 +22,18 @@ const FlashcardPage = () => {
     const count = cards.length;
 
     return (
-        <div>
-            <h2>{topic}</h2>
+        <ContainerTop>
+            <Title>{topic}</Title>
             <Card card={cards[page]} />
-            <div>
-                <button disabled={page === 0} onClick={() => setPage(page - 1)}>
+            <RowWrapper>
+                <FlipButton disabled={page === 0} onClick={() => setPage(page - 1)}>
                     Previous
-                </button>
-                <button disabled={page === count - 1} onClick={() => setPage(page + 1)}>
+                </FlipButton>
+                <FlipButton disabled={page === count - 1} onClick={() => setPage(page + 1)}>
                     Next
-                </button>
-            </div>
-        </div>
+                </FlipButton>
+            </RowWrapper>
+        </ContainerTop>
     );
 };
 
