@@ -10,12 +10,16 @@ import { Container, ContainerTop, LinkDiv, RowWrapper, Title } from '../style/st
 const HomePage = () => {
     const [flashcards, setFlashcards] = useState<FlashCard[]>(retrieveFlashcards());
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [errorMsg, setErrorMsg] = useState<string>('');
 
     const generate = async (topic: string) => {
         const flashcard = await chatCompletion(topic);
         setIsLoading(false);
 
-        if (!flashcard) return;
+        if (!flashcard) {
+            setErrorMsg('Somethings wrong. Try again later...');
+            return;
+        }
         setFlashcards((prev) => [...prev, flashcard]);
     };
 
@@ -30,7 +34,7 @@ const HomePage = () => {
 
     return (
         <ContainerTop>
-            <Form isLoading={isLoading} onGenerate={handleOnGenerate} />
+            <Form isLoading={isLoading} errorMsg={errorMsg} setErrorMsg={setErrorMsg} onGenerate={handleOnGenerate} />
 
             <Container>
                 <RowWrapper>

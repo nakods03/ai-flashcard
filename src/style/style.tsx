@@ -20,6 +20,10 @@ export const Container = tw.div`
     w-full flex flex-col gap-4
 `;
 
-export const ContainerTop = tw(Container)`
-    justify-center items-center gap-16 px-6
+export const ContainerCenter = tw(Container)`
+    justify-center items-center
+`;
+
+export const ContainerTop = tw(ContainerCenter)`
+    gap-16 px-6
 `;
