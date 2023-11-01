@@ -27,6 +27,7 @@ const Form = ({ isLoading, errorMsg, setErrorMsg, onGenerate }: FormProps) => {
     };
 
     const handleOnClick = () => {
+        setErrorMsg('');
         if (topic.length < MIN_CHAR) {
             setErrorMsg('Please enter at least 10 characters.');
             return;
