@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { json, useParams } from 'react-router-dom';
 import tw from 'tailwind-styled-components';
 import Card from '../components/Card';
 import { retrieveFlashcards } from '../store/flashcards';
@@ -16,7 +16,13 @@ const FlashcardPage = () => {
     const flashcards = retrieveFlashcards();
     const flashcard = flashcards.find((flashcard) => flashcard.id === id);
 
-    if (!flashcard) return <div>Not found</div>;
+    if (!flashcard)
+        throw json(
+            {
+                message: 'The flashcard id is invalid.',
+            },
+            { status: 404 }
+        );
 
     const { topic, cards } = flashcard;
     const count = cards.length;
