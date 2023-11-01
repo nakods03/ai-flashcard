@@ -11,9 +11,10 @@ const EmptyMsg = tw.div`
 `;
 
 const OverviewCardList = ({ flashcards }: OverviewCardListProps) => {
-    return (
+    return flashcards.length === 0 ? (
+        <EmptyMsg>No flashcards yet. Generate your first set!</EmptyMsg>
+    ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {flashcards.length === 0 && <EmptyMsg>No flashcards yet. Generate your first set!</EmptyMsg>}
             {flashcards.map((flashcard) => (
                 <OverviewCard key={flashcard.id} flashcard={flashcard} />
             ))}
