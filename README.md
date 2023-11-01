@@ -1,6 +1,6 @@
 # Flashcards via OpenAI
 
-Generate flashcards via OpenAI ChatGPT.
+Generate flashcards via OpenAI ChatGPT. [Try it out](https://ai-flashcard.krissolui.com/).
 
 ### Description
 
