@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { uploadToS3 } from '../aws/s3';
 import { v4 as uuidv4 } from 'uuid';
 import FlashcardPreview from '../components/FlashcardPreview';
