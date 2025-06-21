@@ -1,39 +1,30 @@
-import tw from 'tailwind-styled-components';
-import ReactFlipCard from 'reactjs-flip-card';
-import { Card } from '../types/flashcard';
-import { useEffect, useState } from 'react';
-
-const StyledCard = tw.div`
-    w-full h-full flex flex-col justify-center text-center p-6 border border-solid border-gray-200 rounded-lg shadow-lg 
-`;
+import React, { useState } from 'react';
+import './Card.css';
 
 interface CardProps {
-    card: Card;
+  question: string;
+  answer: string;
 }
 
-const Card = ({ card }: CardProps) => {
-    const { question, answer } = card;
-    const [showAnswer, setShowAnswer] = useState<boolean>(false);
+const Card: React.FC<CardProps> = ({ question, answer }) => {
+  const [flipped, setFlipped] = useState(false);
 
-    useEffect(() => setShowAnswer(false), [card]);
+  const handleFlip = () => {
+    setFlipped(!flipped);
+  };
 
-    const handleOnClick = () => setShowAnswer(!showAnswer);
-
-    const style = {
-        container: { width: '22rem', height: '22rem' },
-    };
-
-    return (
-        <ReactFlipCard
-            containerStyle={style.container}
-            flipTrigger="disabled"
-            flipByProp={showAnswer}
-            onClick={handleOnClick}
-            direction="vertical"
-            frontComponent={<StyledCard>{question}</StyledCard>}
-            backComponent={<StyledCard>{answer}</StyledCard>}
-        />
-    );
+  return (
+    <div className="card-container" onClick={handleFlip}>
+      <div className={`card ${flipped ? 'flipped' : ''}`}>
+        <div className="front">
+          <p>{question}</p>
+        </div>
+        <div className="back">
+          <p>{answer}</p>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Card;
